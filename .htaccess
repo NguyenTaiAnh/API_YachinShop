@@ -1,0 +1,9 @@
+<Limit GET POST PUT DELETE HEAD OPTIONS>
+    Require all granted
+</Limit>
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTPS} !=on [NC]
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
